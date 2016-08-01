@@ -1,3 +1,5 @@
+'use strict';
+
 var weatherApp = angular.module('weatherApp', ['ngRoute', 'ngResource']);
 
 weatherApp.config(function($routeProvider) {
@@ -8,13 +10,13 @@ weatherApp.config(function($routeProvider) {
     controller: 'homeController'
   })
   .when('/forecast',{
-    templateUrl: 'pages/forecast.htm',
+    templateUrl: 'page/forecast.htm',
     controller: 'forecastController'
   });
 
 });
 
-weatherApp.controller('homeController', ['$scope','cityService', function() {
+weatherApp.controller('homeController', ['$scope','cityService', function($scope, cityService) {
   $scope.city = cityService.city;
 
   $scope.$watch('city', function() {
@@ -23,7 +25,7 @@ weatherApp.controller('homeController', ['$scope','cityService', function() {
 
 }]);
 
-weatherApp.controller('forecastController', ['$scope','cityService', function() {
+weatherApp.controller('forecastController', ['$scope','cityService', function($scope, cityService) {
    $scope.city = cityService.city;
 }]);
 
